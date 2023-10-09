@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* CSS tambahan jika diperlukan */
+    </style>
+  </head>
+  <body>
+    <div class="container mx-auto mt-10">
+      <h1 class="text-2xl font-semibold mb-4">
+        Kalkulator Kalori & Berat Badan
+      </h1>
+      <div class="mb-4">
+        <label for="umur" class="block text-gray-700">Umur (tahun):</label>
+        <input
+          type="number"
+          id="umur"
+          class="border rounded-lg px-4 py-2 w-full"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="tinggi" class="block text-gray-700"
+          >Tinggi Badan (cm):</label
+        >
+        <input
+          type="number"
+          id="tinggi"
+          class="border rounded-lg px-4 py-2 w-full"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="jenisKelamin" class="block text-gray-700"
+          >Jenis Kelamin:</label
+        >
+        <select id="jenisKelamin" class="border rounded-lg px-4 py-2 w-full">
+          <option value="laki">Laki-laki</option>
+          <option value="perempuan">Perempuan</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="berat" class="block text-gray-700">Berat Badan (kg):</label>
+        <input
+          type="number"
+          id="berat"
+          class="border rounded-lg px-4 py-2 w-full"
+        />
+      </div>
+      <div>
+        <button
+          onclick="hitungKaloriBeratBadan()"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+        >
+          Hitung
+        </button>
+      </div>
+      <div id="hasil" class="mt-4"></div>
+    </div>
+
+    <!-- Kode yang telah Anda berikan sebelumnya -->
+    <div class="flex flex-col gap-y-5 mt-10 pr-20">
+      <a
+        class="hover:bg-blue-200 hover:text-blue-800 flex flex-row justify-between bg-white w-full p-4 rounded-lg"
+        href="index.html"
+        ><span>Kembali</span> >
+      </a>
+    </div>
+
+    <script>
+      function hitungKaloriBeratBadan() {
+        var umur = parseInt(document.getElementById("umur").value);
+        var tinggi = parseInt(document.getElementById("tinggi").value);
+        var jenisKelamin = document.getElementById("jenisKelamin").value;
+        var beratBadan = parseFloat(document.getElementById("berat").value);
+
+        // Melakukan perhitungan BMI
+        var tinggiMeter = tinggi / 100;
+        var bmi = beratBadan / (tinggiMeter * tinggiMeter);
+
+        var hasil = "Hasil perhitungan:\n";
+
+        if (bmi < 18.5) {
+          hasil += "Berat badan kurang, berat badan ideal belum tercapai.";
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+          hasil += "Berat badan ideal, berat badan Anda sudah baik.";
+        } else {
+          hasil +=
+            "Berat badan berlebih, Anda mungkin perlu mempertimbangkan diet dan olahraga.";
+        }
+
+        document.getElementById("hasil").innerText = hasil;
+      }
+    </script>
+  </body>
+</html>
